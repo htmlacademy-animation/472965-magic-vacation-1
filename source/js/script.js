@@ -20,4 +20,5 @@ form();
 social();
 
 const fullPageScroll = new FullPageScroll();
-fullPageScroll.init();
+
+document.addEventListener('DOMContentLoaded', () => fullPageScroll.init())
