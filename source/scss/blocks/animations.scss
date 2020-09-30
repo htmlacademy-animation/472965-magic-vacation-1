@@ -1,0 +1,15 @@
+.loaded {
+
+  .page-header__menu {
+    opacity: 1;
+  }
+
+  .page-header__logo {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .screen__footer {
+    transform: translateY(0);
+  }
+}
