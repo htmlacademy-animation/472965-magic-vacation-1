@@ -995,8 +995,7 @@ img {
   height: 100vh;
   background-color: #5f458c;
   will-change: transform;
-  transform: translateY(100%);
-  z-index: 5; }
+  transform: translateY(-100%); }
 
 .animation-screen {
   position: fixed;
