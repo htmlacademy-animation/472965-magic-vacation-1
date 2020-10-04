@@ -24,6 +24,5 @@
   height: 100vh;
   background-color: $c-dark;
   will-change: transform; // для оптимизации передает инфу в браузер что мы будем анимировать
-  transform: translateY(100%);
-  z-index: 5; // 5 т.к. у page-header  z-index: 10
+  transform: translateY(-100%);
 }
