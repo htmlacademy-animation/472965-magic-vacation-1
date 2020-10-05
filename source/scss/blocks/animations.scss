@@ -13,3 +13,16 @@
     transform: translateY(0);
   }
 }
+
+
+// для анимации фона при переходе с экрана *история* на экран *призы*
+.full-color-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: $c-dark;
+  will-change: transform; // для оптимизации передает инфу в браузер что мы будем анимировать
+  transform: translateY(-100%);
+}
