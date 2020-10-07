@@ -26,3 +26,49 @@
   will-change: transform; // для оптимизации передает инфу в браузер что мы будем анимировать
   transform: translateY(-100%);
 }
+
+
+// анимации на экране *правила*
+
+// круг с цифрой
+@keyframes rulesItemCircle {
+  0% {
+    transform: scale(0);
+  }
+
+
+  70% {
+    transform: scale(1.2);
+
+  }
+
+  100% {
+    transform: scale(1);
+
+  }
+}
+
+@keyframes rulesItemNumb {
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    color: inherit;
+    opacity: 0.6;
+  }
+  100% {
+    color: inherit;
+    opacity: 1;
+  }
+}
+
+@keyframes rulesbtnText {
+  0% {
+    color: transparentize($c-dark, 1);
+  }
+
+  100% {
+    color: transparentize($c-dark, 0);
+  }
+}
