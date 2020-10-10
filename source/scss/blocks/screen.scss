@@ -19,10 +19,6 @@
   }
 
   &.active {
-    .intro__message {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     .form__field {
       width: calc(100% - 21rem);

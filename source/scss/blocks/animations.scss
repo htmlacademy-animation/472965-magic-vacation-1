@@ -74,21 +74,20 @@
 
  // для анимации букв
  .text-animation {
-  display: block;
+  line-height: 1.25;
+  @include lhCrop(1.2);
+  display: inline-block;
   overflow: hidden;
 
   & > span {
-    transform: translateY(110%);
+    @include lhCrop(1.2);
+    transform: translateY(120%);
     display: inline-block;
     will-change: transform;
   }
+
 }
 
-.active .text-animation > span {
+.active-text .text-animation > span {
   transform: translateY(0);
 }
-
-.intro__date .text-animation {
-  display: inline-block;
-}
-

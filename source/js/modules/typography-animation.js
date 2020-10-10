@@ -1,28 +1,40 @@
-class AccentTypographyBuild {
-  constructor(elementSelector, timer, classForActivate, property) {
+export default class AccentTypographyBuild {
+  constructor(elementSelector, timer, classForActivate, property, twoWords = false) {
     this._elementSelector = elementSelector;
     this._timer = timer;
     this._classForActivate = classForActivate;
     this._property = property;
     this._element = document.querySelector(this._elementSelector);
-    this._timeOffset = 50;
-    this._countWord = 0;
-
+    this._timeOffset = 100;
+    this._twoWords = twoWords;
+    this._maxDelay = 0;
     this.prePareText();
   }
 
-  createElement(letter, index) {
+  createElement(letter, index, wordIndex) {
     const span = document.createElement(`span`);
     span.textContent = letter;
-    let delay = this._countWord > 0 ? this._timeOffset * (index + 1) : this._timeOffset;
+    let delay;
 
     if ((index + 1) % 3 === 0) {
-      delay += this._timeOffset / 2 + index * 3;
+      delay = this._timeOffset * 2;
     } else if ((index - 1) % 3 === 0) {
-      delay += this._timeOffset * 2 + index * 2;
+      delay = this._timeOffset * 3;
+    } else {
+      delay = this._timeOffset;
     }
 
-    span.style.transition = `${this._property} ${this._timer}ms ease ${delay}ms`;
+    if (this._maxDelay < delay) {
+      this._maxDelay = delay;
+    }
+
+    if (this._twoWords && wordIndex > 0) {
+      delay = delay + this._maxDelay + this._timeOffset;
+    }
+
+    span.style.transition = `${this._property} ${
+      this._timer
+    }ms cubic-bezier(0.65, 0.05, 0.36, 1) ${Math.abs(delay)}ms`;
     return span;
   }
 
@@ -35,9 +47,9 @@ class AccentTypographyBuild {
       .split(` `)
       .filter((letter) => letter !== ``);
 
-    const content = text.reduce((fragmentParent, word) => {
+    const content = text.reduce((fragmentParent, word, wordIndex) => {
       const wordElement = Array.from(word).reduce((fragment, letter, index) => {
-        fragment.appendChild(this.createElement(letter, index));
+        fragment.appendChild(this.createElement(letter, index, wordIndex));
         return fragment;
       }, document.createDocumentFragment());
       const wordContainer = document.createElement(`span`);
@@ -47,8 +59,7 @@ class AccentTypographyBuild {
       this._countWord++;
       return fragmentParent;
     }, document.createDocumentFragment());
-
-    this._element.innerHTML = ``;
+    this._element.textContent = ``;
     this._element.appendChild(content);
   }
 
@@ -58,30 +69,11 @@ class AccentTypographyBuild {
     }
 
     setTimeout(() => {
-      this._element.classList.add(this._classForActivate);
+      this._element.classList.add(`active-text`);
     });
   }
 
   destroyAnimation() {
-    this._element.classList.remove(this._classForActivate);
+    this._element.classList.remove(`active-text`);
   }
 }
-
-const mainTitle = new AccentTypographyBuild(
-    `.intro__title`,
-    700,
-    `active`,
-    `transform`
-);
-
-const mainTitleDate = new AccentTypographyBuild(
-    `.intro__date`,
-    700,
-    `active`,
-    `transform`
-);
-
-export default () => {
-  mainTitle.runAnimation();
-  mainTitleDate.runAnimation();
-};
