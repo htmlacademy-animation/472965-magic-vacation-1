@@ -10357,6 +10357,70 @@ class FullPageScroll {
 
 /***/ }),
 
+/***/ "./source/js/modules/intro.js":
+/*!************************************!*\
+  !*** ./source/js/modules/intro.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _typography_animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./typography-animation */ "./source/js/modules/typography-animation.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (() => {
+  const pageHeaderNav = document.querySelector(`.page-header__nav`);
+  const title = document.querySelector(`.intro__title`);
+  const dateLabel = document.querySelector(`.intro__label`);
+  const message = document.querySelector(`.intro__message`);
+
+  const introTitle = new _typography_animation__WEBPACK_IMPORTED_MODULE_0__["default"](
+    `.intro__title`,
+    1000,
+    `text-animation`,
+    `transform`,
+    true
+  );
+
+  const introDate = new _typography_animation__WEBPACK_IMPORTED_MODULE_0__["default"](
+    `.intro__date`,
+    1000,
+    `text-animation`,
+    `transform`
+  );
+
+  pageHeaderNav.addEventListener(
+    `transitionend`,
+    () => {
+      introTitle.runAnimation();
+    },
+    { once: true }
+  );
+
+  title.addEventListener(
+    `transitionend`,
+    () => {
+      message.classList.add(`active`);
+    },
+    { once: true }
+  );
+
+  message.addEventListener(
+    `transitionend`,
+    () => {
+      setTimeout(() => {
+        introDate.runAnimation();
+        dateLabel.classList.add(`active`);
+      }, 300);
+    },
+    { once: true }
+  );
+});
+
+
+/***/ }),
+
 /***/ "./source/js/modules/menu.js":
 /*!***********************************!*\
   !*** ./source/js/modules/menu.js ***!
@@ -10625,31 +10689,44 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AccentTypographyBuild; });
 class AccentTypographyBuild {
-  constructor(elementSelector, timer, classForActivate, property) {
+  constructor(elementSelector, timer, classForActivate, property, twoWords = false) {
     this._elementSelector = elementSelector;
     this._timer = timer;
     this._classForActivate = classForActivate;
     this._property = property;
     this._element = document.querySelector(this._elementSelector);
-    this._timeOffset = 50;
-    this._countWord = 0;
-
+    this._timeOffset = 100;
+    this._twoWords = twoWords;
+    this._maxDelay = 0;
     this.prePareText();
   }
 
-  createElement(letter, index) {
+  createElement(letter, index, wordIndex) {
     const span = document.createElement(`span`);
     span.textContent = letter;
-    let delay = this._countWord > 0 ? this._timeOffset * (index + 1) : this._timeOffset;
+    let delay;
 
     if ((index + 1) % 3 === 0) {
-      delay += this._timeOffset / 2 + index * 3;
+      delay = this._timeOffset * 2;
     } else if ((index - 1) % 3 === 0) {
-      delay += this._timeOffset * 2 + index * 2;
+      delay = this._timeOffset * 3;
+    } else {
+      delay = this._timeOffset;
     }
 
-    span.style.transition = `${this._property} ${this._timer}ms ease ${delay}ms`;
+    if (this._maxDelay < delay) {
+      this._maxDelay = delay;
+    }
+
+    if (this._twoWords && wordIndex > 0) {
+      delay = delay + this._maxDelay + this._timeOffset;
+    }
+
+    span.style.transition = `${this._property} ${
+      this._timer
+    }ms cubic-bezier(0.65, 0.05, 0.36, 1) ${Math.abs(delay)}ms`;
     return span;
   }
 
@@ -10662,9 +10739,9 @@ class AccentTypographyBuild {
       .split(` `)
       .filter((letter) => letter !== ``);
 
-    const content = text.reduce((fragmentParent, word) => {
+    const content = text.reduce((fragmentParent, word, wordIndex) => {
       const wordElement = Array.from(word).reduce((fragment, letter, index) => {
-        fragment.appendChild(this.createElement(letter, index));
+        fragment.appendChild(this.createElement(letter, index, wordIndex));
         return fragment;
       }, document.createDocumentFragment());
       const wordContainer = document.createElement(`span`);
@@ -10674,8 +10751,7 @@ class AccentTypographyBuild {
       this._countWord++;
       return fragmentParent;
     }, document.createDocumentFragment());
-
-    this._element.innerHTML = ``;
+    this._element.textContent = ``;
     this._element.appendChild(content);
   }
 
@@ -10685,33 +10761,14 @@ class AccentTypographyBuild {
     }
 
     setTimeout(() => {
-      this._element.classList.add(this._classForActivate);
+      this._element.classList.add(`active-text`);
     });
   }
 
   destroyAnimation() {
-    this._element.classList.remove(this._classForActivate);
+    this._element.classList.remove(`active-text`);
   }
 }
-
-const mainTitle = new AccentTypographyBuild(
-    `.intro__title`,
-    700,
-    `active`,
-    `transform`
-);
-
-const mainTitleDate = new AccentTypographyBuild(
-    `.intro__date`,
-    700,
-    `active`,
-    `transform`
-);
-
-/* harmony default export */ __webpack_exports__["default"] = (() => {
-  mainTitle.runAnimation();
-  mainTitleDate.runAnimation();
-});
 
 
 /***/ }),
@@ -10735,9 +10792,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_social_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/social.js */ "./source/js/modules/social.js");
 /* harmony import */ var _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/full-page-scroll */ "./source/js/modules/full-page-scroll.js");
 /* harmony import */ var _modules_rules__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/rules */ "./source/js/modules/rules.js");
-/* harmony import */ var _modules_typography_animation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/typography-animation */ "./source/js/modules/typography-animation.js");
+/* harmony import */ var _modules_intro__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/intro */ "./source/js/modules/intro.js");
 // modules
-
 
 
 
@@ -10760,7 +10816,7 @@ Object(_modules_result_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
 Object(_modules_form_js__WEBPACK_IMPORTED_MODULE_6__["default"])();
 Object(_modules_social_js__WEBPACK_IMPORTED_MODULE_7__["default"])();
 Object(_modules_rules__WEBPACK_IMPORTED_MODULE_9__["default"])();
-Object(_modules_typography_animation__WEBPACK_IMPORTED_MODULE_10__["default"])();
+Object(_modules_intro__WEBPACK_IMPORTED_MODULE_10__["default"])();
 
 const fullPageScroll = new _modules_full_page_scroll__WEBPACK_IMPORTED_MODULE_8__["default"]();
 
