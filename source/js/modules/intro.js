@@ -7,44 +7,44 @@ export default () => {
   const message = document.querySelector(`.intro__message`);
 
   const introTitle = new AccentTypographyBuild(
-    `.intro__title`,
-    1000,
-    `text-animation`,
-    `transform`,
-    true
+      `.intro__title`,
+      1000,
+      `text-animation`,
+      `transform`,
+      true
   );
 
   const introDate = new AccentTypographyBuild(
-    `.intro__date`,
-    1000,
-    `text-animation`,
-    `transform`
+      `.intro__date`,
+      1000,
+      `text-animation`,
+      `transform`
   );
 
   pageHeaderNav.addEventListener(
-    `transitionend`,
-    () => {
-      introTitle.runAnimation();
-    },
-    { once: true }
+      `transitionend`,
+      () => {
+        introTitle.runAnimation();
+      },
+      {once: true}
   );
 
   title.addEventListener(
-    `transitionend`,
-    () => {
-      message.classList.add(`active`);
-    },
-    { once: true }
+      `transitionend`,
+      () => {
+        message.classList.add(`active`);
+      },
+      {once: true}
   );
 
   message.addEventListener(
-    `transitionend`,
-    () => {
-      setTimeout(() => {
-        introDate.runAnimation();
-        dateLabel.classList.add(`active`);
-      }, 300);
-    },
-    { once: true }
+      `transitionend`,
+      () => {
+        setTimeout(() => {
+          introDate.runAnimation();
+          dateLabel.classList.add(`active`);
+        }, 300);
+      },
+      {once: true}
   );
 };
