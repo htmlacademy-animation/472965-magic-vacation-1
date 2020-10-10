@@ -215,7 +215,7 @@
   transform-origin: top right;
   will-change: transform;
   transform: scaleX(0);
-  color: transparentize($c-dark, 1);
+  color: transparent;
   transition: transform 0.4s ease;
 
   @media (min-width: $stop-scaling) {

@@ -9,6 +9,8 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import rules from './modules/rules';
+import typographyAnimation from './modules/typography-animation';
+
 
 // init modules
 mobileHeight();
@@ -20,11 +22,12 @@ result();
 form();
 social();
 rules();
+typographyAnimation();
 
 const fullPageScroll = new FullPageScroll();
 
-document.addEventListener('DOMContentLoaded', () => fullPageScroll.init())
+document.addEventListener(`DOMContentLoaded`, () => fullPageScroll.init());
 
-window.addEventListener('load', () => {
-  document.body.classList.add('loaded')
-})
+window.addEventListener(`load`, () => {
+  document.body.classList.add(`loaded`);
+});

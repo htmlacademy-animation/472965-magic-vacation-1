@@ -29,8 +29,6 @@
 
 
 // анимации на экране *правила*
-
-// круг с цифрой
 @keyframes rulesItemCircle {
   0% {
     transform: scale(0);
@@ -65,10 +63,32 @@
 
 @keyframes rulesbtnText {
   0% {
-    color: transparentize($c-dark, 1);
+    color: transparent;
   }
 
   100% {
-    color: transparentize($c-dark, 0);
+    color: $c-dark;
   }
 }
+
+
+ // для анимации букв
+ .text-animation {
+  display: block;
+  overflow: hidden;
+
+  & > span {
+    transform: translateY(110%);
+    display: inline-block;
+    will-change: transform;
+  }
+}
+
+.active .text-animation > span {
+  transform: translateY(0);
+}
+
+.intro__date .text-animation {
+  display: inline-block;
+}
+
