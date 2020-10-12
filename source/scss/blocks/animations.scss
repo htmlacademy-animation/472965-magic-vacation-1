@@ -91,3 +91,49 @@
 .active-text .text-animation > span {
   transform: translateY(0);
 }
+
+
+// для кнопок слайдера на странице *история*
+@keyframes storyBtnLeft {
+  0% {
+    opacity: 0;
+    color: transparent;
+    transform : translateX(-10rem) rotate(720deg);
+  }
+
+  55% {
+    opacity: 0.5;
+  }
+
+  80% {
+    color: $c-dark;
+    opacity: 1;
+  }
+
+  100% {
+    color: $c-dark;
+    transform : translateX(0);
+  }
+}
+
+@keyframes storyBtnRight {
+  0% {
+    opacity: 0;
+    color: transparent;
+    transform : translateX(10rem) rotate(720deg);
+  }
+
+  55% {
+    opacity: 0.5;
+  }
+
+  80% {
+    color: $c-dark;
+    opacity: 1;
+  }
+
+  100% {
+    color: $c-dark;
+    transform : translateX(0);
+  }
+}
