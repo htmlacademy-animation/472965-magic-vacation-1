@@ -129,19 +129,6 @@
   }
 }
 
-.screen.active .swiper-slide-active,
-.screen.active .swiper-slide-next {
-  & .slider__item-text {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.swiper-slide-next {
-  & .slider__item-text {
-    transition-delay: 250ms;
-  }
-}
 
 .slider__controls {
   position: absolute;
@@ -165,6 +152,7 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     display: none;
   }
+
 }
 
 .slider__control {
@@ -291,6 +279,40 @@
       width: 0.4rem;
       height: 0.4rem;
       background-color: $c-light;
+    }
+  }
+}
+
+.active {
+  .swiper-slide-active,
+  .swiper-slide-next {
+    & .slider__item-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .swiper-slide-next {
+    & .slider__item-text {
+      transition-delay: 250ms;
+    }
+  }
+
+  .slider__controls {
+    .slider__control--prev {
+      animation-name: storyBtnLeft;
+    }
+
+    .slider__control--next {
+      animation-name: storyBtnRight;
+    }
+
+    .slider__control--prev,
+    .slider__control--next {
+      animation-duration: 500ms;
+      animation-timing-function: cubic-bezier(0.31, 0.22, 0.2, 1);
+      animation-delay: 350ms;
+      animation-fill-mode: both;
     }
   }
 }

@@ -67,6 +67,6 @@
     display: block;
     height: 0;
     width: 0;
-    margin-top: calc((1 - #{$line-height}) * 1.7em);
+    margin-top: #{(1 - $line-height) * 1.7}em;
   }
 }
