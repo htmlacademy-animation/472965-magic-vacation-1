@@ -995,7 +995,7 @@ img {
   height: 100vh;
   background-color: #5f458c;
   will-change: transform;
-  transform: translateY(-100%); }
+  transform: translateY(100%); }
 
 @keyframes rulesItemCircle {
   0% {
