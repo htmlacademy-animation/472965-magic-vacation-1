@@ -305,18 +305,18 @@
           <line x1="278.96" y1="93.19" x2="298.74" y2="93.19" fill="none" stroke="#fff" stroke-linecap="round"
             stroke-miterlimit="10" stroke-width="2" />
           <path d="M278.75,82.91H251.39a12.4,12.4,0,1,0-24.8,0H208.65" fill="none" stroke="#fff" stroke-linecap="round"
-            stroke-miterlimit="10" stroke-width="2" />
+            stroke-miterlimit="10" stroke-width="4" />
           <line x1="287.01" y1="82.91" x2="309.21" y2="82.91" fill="none" stroke="#fff" stroke-linecap="round"
-            stroke-miterlimit="10" stroke-width="2" />
+            stroke-miterlimit="10" stroke-width="4" />
         </g>
-        <g transform="scale(0.4) translate(520 410)" opacity="0.8">
+        <g transform="scale(0.4) translate(520 410)" opacity="0.9">
           <animateTransform id="showCloudsEnd" attributeName="transform" type="translate"
             begin="showWindowEnd.end - 1.5s" from="130 0" to="-250, 0" dur="2.4s" additive="sum"
             repeatCount="indefinite" />
           <line x1="265.96" y1="93.19" x2="235.74" y2="93.19" fill="none" stroke="#fff" stroke-linecap="round"
-            stroke-miterlimit="10" stroke-width="2" />
+            stroke-miterlimit="10" stroke-width="4" />
           <path d="M278.75,82.91H251.39a12.4,12.4,0,1,0-24.8,0H208.65" fill="none" stroke="#fff" stroke-linecap="round"
-            stroke-miterlimit="10" stroke-width="2" />
+            stroke-miterlimit="10" stroke-width="4" />
         </g>
       </g>
     </g>
