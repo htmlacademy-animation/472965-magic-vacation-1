@@ -10500,7 +10500,7 @@ __webpack_require__.r(__webpack_exports__);
 
       // если нет картинки, то добавляем
       if (!prizeJourneys.hasAttribute(`src`)) {
-        prizeJourneys.setAttribute(`src`, `../../img/prize1.svg`);
+        prizeJourneys.setAttribute(`src`, `img/prize1.svg`);
       }
     }
   });
