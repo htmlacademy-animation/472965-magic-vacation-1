@@ -6,7 +6,7 @@ export default () => {
 
       // если нет картинки, то добавляем
       if (!prizeJourneys.hasAttribute(`src`)) {
-        prizeJourneys.setAttribute(`src`, `../../img/prize1.svg`);
+        prizeJourneys.setAttribute(`src`, `img/prize1.svg`);
       }
     }
   });
