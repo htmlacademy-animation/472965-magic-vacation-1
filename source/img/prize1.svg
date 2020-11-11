@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 75 280 250" width="350" height="330">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 73 280 250" width="350" height="330">
   <g id="airship">
     <animate id="airshipWindowOpacityEnd" attributeType="CSS" attributeName="opacity" dur="0.5s" begin="2.3s" from="1"
       to="0" fill="freeze" />
