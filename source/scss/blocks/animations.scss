@@ -27,6 +27,16 @@
   transform: translateY(100%);
 }
 
+@keyframes prizesItemJourneys {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 
 // анимации на экране *правила*
 @keyframes rulesItemCircle {

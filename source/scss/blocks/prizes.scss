@@ -2,7 +2,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 14.6rem 0 7.7rem;
+  padding: 14.6rem 0 0;
   width: 100%;
 
   @media (min-width: $stop-scaling) {
@@ -23,7 +23,7 @@
 }
 
 .prizes__title {
-  margin: 0 0 6rem;
+  margin: 0 0 5.2rem;
   text-transform: uppercase;
   font-family: $font-alt;
   font-weight: 400;
@@ -93,7 +93,9 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-top: auto;
+  margin-top: -1rem;
+  flex-grow: 1;
+  margin-bottom: 6rem;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     flex-direction: column;
@@ -105,7 +107,6 @@
 }
 
 .prizes__item {
-  margin-left: 7.5rem;
 
 
   @media (min-width: $stop-scaling) {
@@ -115,7 +116,6 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     display: flex;
     align-items: flex-end;
-    margin-left: 0;
     margin-bottom: 2.8rem;
 
     &:last-child {
@@ -128,10 +128,15 @@
   }
 
   &--journeys {
+    transform: translateX(100%);
+
+    &.active {
+      animation: prizesItemJourneys 0.5s linear 4s forwards;
+    }
+
     .prizes__icon {
       position: relative;
-      left: -5.9rem;
-      width: 26rem;
+      width: 28rem;
 
       @media (min-width: $stop-scaling) {
         left: -59px;
@@ -155,7 +160,6 @@
   }
 
   &--cases {
-    margin-left: 7rem;
 
     @media (min-width: $stop-scaling) {
       margin-left: 70px;
@@ -167,7 +171,7 @@
     }
 
     .prizes__icon {
-      width: 30rem;
+      width: 34rem;
 
       @media (min-width: $stop-scaling) {
         width: 268px;
@@ -189,6 +193,8 @@
   }
 
   &--codes {
+    margin-left: 12rem;
+
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }
@@ -230,9 +236,16 @@
 .prizes__desc {
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   margin: 5.6rem 0 0 0;
   font-size: 1.8rem;
   line-height: 1.1;
+  opacity: 0;
+
+  &.active {
+    transition: opacity 0.1s ease 2.5s;
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 56px;
