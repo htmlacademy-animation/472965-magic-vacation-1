@@ -1079,6 +1079,12 @@ img {
     color: #5f458c;
     transform: translateX(0); } }
 
+@keyframes opacitySet {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
 .animation-screen {
   position: fixed;
   display: flex;
@@ -1652,7 +1658,7 @@ img {
   letter-spacing: -0.04em; }
   @media (min-width: 2000px) {
     .intro__title {
-      max-width: 990px;
+      max-width: 1000px;
       font-size: 120px; } }
   @media (max-width: 1024px) and (orientation: portrait) {
     .intro__title {
@@ -2138,6 +2144,7 @@ img {
   .prizes__item--journeys.active {
     animation: prizesItemJourneys 0.5s linear 4s forwards; }
   .prizes__item--journeys .prizes__icon {
+    animation: opacitySet 1.5s linear 0s forwards;
     position: relative;
     width: 28rem; }
     @media (min-width: 2000px) {
@@ -2219,7 +2226,7 @@ img {
   line-height: 1.1;
   opacity: 0; }
   .prizes__desc.active {
-    transition: opacity 0.1s ease 2.5s;
+    transition: opacity 0.1s ease 2s;
     opacity: 1; }
   @media (min-width: 2000px) {
     .prizes__desc {
@@ -2998,7 +3005,7 @@ img {
       background-position: top center, bottom center; } }
 
 .screen--prizes.active ~ .full-color-bg {
-  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
   transform: translateY(0);
   background-color: #5f458c; }
 
