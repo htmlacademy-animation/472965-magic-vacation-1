@@ -314,7 +314,7 @@
 
   // заливка фона
   &.active ~ .full-color-bg{
-    transition: transform 0.7s $bezierFn;
+    transition: transform 1s $bezierFn;
     transform: translateY(0);
     background-color: $c-dark;
   }
