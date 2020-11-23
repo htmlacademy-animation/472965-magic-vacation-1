@@ -12,17 +12,17 @@ export default () => {
   const images = [
     {
       path: `img/prize1.svg`,
-      timeDelay: 0,
+      timeDelay: 500,
       target: prizeJourneys,
     },
     {
       path: `img/prize2.svg`,
-      timeDelay: 4000,
+      timeDelay: 4500,
       target: prizeCases,
     },
     {
       path: `img/prize3.svg`,
-      timeDelay: 7500,
+      timeDelay: 8000,
       target: prizeCodes,
     },
   ];

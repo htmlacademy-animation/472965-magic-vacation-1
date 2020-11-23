@@ -135,6 +135,7 @@
     }
 
     .prizes__icon {
+      animation: opacitySet 1.5s linear 0s forwards;
       position: relative;
       width: 28rem;
 
@@ -243,7 +244,7 @@
   opacity: 0;
 
   &.active {
-    transition: opacity 0.1s ease 2.5s;
+    transition: opacity 0.1s ease 2s;
     opacity: 1;
   }
 
