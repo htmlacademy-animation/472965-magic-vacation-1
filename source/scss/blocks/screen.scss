@@ -363,6 +363,15 @@
   &.screen--show {
     opacity: 1;
     pointer-events: auto;
+
+    .result__title_victory{
+      animation: zoomOut 0.3s linear forwards;
+    }
+
+    .result__title_lost {
+      transform: translateY(-150px);
+      overflow: visible;
+    }
   }
 }
 
