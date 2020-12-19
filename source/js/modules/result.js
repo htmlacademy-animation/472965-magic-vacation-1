@@ -1,6 +1,7 @@
 export default () => {
   let showResultEls = document.querySelectorAll(`.js-show-result`);
   let results = document.querySelectorAll(`.screen--result`);
+
   if (results.length) {
     for (let i = 0; i < showResultEls.length; i++) {
       showResultEls[i].addEventListener(`click`, function () {
@@ -38,8 +39,9 @@ export default () => {
 
   function createAnimateSvgTitle(title, fall) {
     const paths = [...title.querySelectorAll(`path`)];
-    let delay = 0.2;
-    let delayTrancform = 0;
+    let delay = 0.4;
+    let delayTrancform = 0.3;
+    let speedTransform = 1.3;
 
     paths.forEach((item, i) => {
       const pathLength = item.getTotalLength();
@@ -75,15 +77,20 @@ export default () => {
             `begin`,
             `animateLetter.begin + ${delayTrancform}s`
         );
-        svgAnimateTransform.setAttribute(`dur`, `0.8s`);
+        svgAnimateTransform.setAttribute(`dur`, `${speedTransform}s`);
         svgAnimateTransform.setAttribute(`values`, `${transformList[i]}`);
         svgAnimateTransform.setAttribute(
-            `keySplines`, `0 0.6 0.8 1; 0 0.3 0.6 1; 0.3 0 0.6 1`);
+            `keySplines`,
+            `0 0.6 0.8 1; 0 0.3 0.6 1; 0.3 0 0.6 1`
+        );
         svgAnimateTransform.setAttribute(`calcMode`, `spline`);
         svgAnimateTransform.setAttribute(`fill`, `freeze`);
 
+        speedTransform -= 0.1;
+
         itemAnimate.setAttribute(`begin`, `${delay}`);
-        delay += 0.13;
+        delay += 0.2;
+
         delayTrancform += 0.15;
 
         itemAnimate.after(svgAnimateTransform);
