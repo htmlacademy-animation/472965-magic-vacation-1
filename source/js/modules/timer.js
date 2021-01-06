@@ -2,7 +2,7 @@ const gameCounter = document.querySelector(`#game .game__counter`);
 const minutesGameCounter = gameCounter.querySelector(`span:first-child`);
 const secondsGameCounter = gameCounter.querySelector(`span:last-child`);
 
-const timer = 1;
+const timer = 5;
 const fpsInterval = 1000;
 
 let timeTotal;
