@@ -10853,9 +10853,7 @@ const timer = 5;
 const fpsInterval = 1000;
 
 let timeTotal;
-let now;
 let then;
-let elapsed;
 let animationframeID;
 
 
@@ -10893,8 +10891,8 @@ function startTimer() {
 
   animationframeID = requestAnimationFrame(startTimer);
 
-  now = Date.now();
-  elapsed = now - then;
+  let now = Date.now();
+  let elapsed = now - then;
 
   if (elapsed > fpsInterval) {
     then = now - (elapsed % fpsInterval);
@@ -10913,8 +10911,8 @@ function runTimer() {
 function cancelTimer() {
   cancelAnimationFrame(animationframeID);
 
-  minutesGameCounter.textContent = '00';
-  secondsGameCounter.textContent = '00';
+  minutesGameCounter.textContent = `00`;
+  secondsGameCounter.textContent = `00`;
 }
 
 
