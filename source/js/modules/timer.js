@@ -29,7 +29,7 @@ export default class Timer {
   drawTime() {
     let timeLeft = this.totalTime - Date.now();
 
-    if (timeLeft <= 0 ) {
+    if (timeLeft <= 0) {
       this.elements[0].textContent = `00`;
       this.elements[1].textContent = `00`;
 

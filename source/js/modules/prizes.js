@@ -1,4 +1,4 @@
-import CounterNumbers from './counter-numbers'
+import CounterNumbers from './counter-numbers';
 
 export default () => {
   const prizeScreen = document.querySelector(`.screen--prizes`);
@@ -12,19 +12,19 @@ export default () => {
 
   const images = [
     {
-      name: 'prize-journeys',
+      name: `prize-journeys`,
       path: `img/prize1.svg`,
       timeDelay: 500,
       target: prizeJourneys,
     },
     {
-      name: 'prize-cases',
+      name: `prize-cases`,
       path: `img/prize2.svg`,
       timeDelay: 4500,
       target: prizeCases,
     },
     {
-      name: 'prize-codes',
+      name: `prize-codes`,
       path: `img/prize3.svg`,
       timeDelay: 8000,
       target: prizeCodes,
@@ -49,7 +49,7 @@ export default () => {
           target.setAttribute(`src`, `${path}?time=${Date.now()}`);
 
           prizesDesc[i].classList.add(`active`);
-          //анимация цифр
+          // анимация цифр
           prizesDesc[i].addEventListener(`animationstart`, () => {
             if (animationNumbers[name]) {
               const {numbers, fps} = animationNumbers[name];
