@@ -1091,6 +1091,14 @@ img {
   to {
     transform: scale(1); } }
 
+@keyframes showTextToLeft {
+  from {
+    transform: translateX(3rem);
+    opacity: 0; }
+  to {
+    transform: translateX(0);
+    opacity: 1; } }
+
 .animation-screen {
   position: fixed;
   display: flex;
@@ -2235,15 +2243,10 @@ img {
   font-size: 1.8rem;
   line-height: 1.1;
   opacity: 0; }
-  .prizes__desc span {
-    opacity: 0;
-    transform: translateX(3rem); }
   .prizes__desc.active {
     animation: opacitySet 0.1s ease 2s forwards; }
     .prizes__desc.active span {
-      transition: all 0.7s ease 1.5s;
-      opacity: 1;
-      transform: translateX(0); }
+      animation: showTextToLeft 0.8s ease 2s forwards; }
   @media (min-width: 2000px) {
     .prizes__desc {
       margin-top: 56px;
