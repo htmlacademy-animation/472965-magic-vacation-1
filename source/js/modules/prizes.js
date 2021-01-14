@@ -1,3 +1,5 @@
+import CounterNumbers from "./counter-numbers";
+
 export default () => {
   const prizeScreen = document.querySelector(`.screen--prizes`);
   const prizeJourneys = prizeScreen.querySelector(
@@ -7,7 +9,6 @@ export default () => {
   const prizeCodes = prizeScreen.querySelector(`.prizes__item--codes img`);
 
   const prizesDesc = [...prizeScreen.querySelectorAll(`.prizes__desc`)];
-
 
   const images = [
     {
@@ -27,6 +28,17 @@ export default () => {
     },
   ];
 
+  const animationNumbers = {
+    'prize-cases': {
+      numbers: [1, 2, 3, 4, 5, 6, 7],
+      fps: 12
+    },
+    'prize-codes': {
+      numbers: [11, 121, 216, 324, 419, 513, 628, 734, 826, 875, 900],
+      fps: 12
+    },
+  };
+
   function addImagesSvg() {
     if (!prizeJourneys.hasAttribute(`src`)) {
       images.forEach(({path, timeDelay, target}, i) => {
@@ -35,16 +47,35 @@ export default () => {
 
           prizesDesc[i].classList.add(`active`);
 
-          if (target === prizeJourneys) {
-            prizeScreen.querySelector(`.prizes__item--journeys`).classList.add(`active`);
-          }
+          prizesDesc[i].addEventListener(`animationstart`, () => {
+            if (target === prizeCases) {
+              const {numbers, fps} = animationNumbers[`prize-cases`];
+              const settingNumbers = new CounterNumbers(
+                  prizesDesc[i].querySelector(`b`),
+                  numbers, fps
+              );
+              settingNumbers.runCounter();
+            }
+            if (target === prizeCodes) {
+              const {numbers, fps} = animationNumbers[`prize-codes`];
+              const settingNumbers = new CounterNumbers(
+                  prizesDesc[i].querySelector(`b`),
+                  numbers, fps
+              );
+              settingNumbers.runCounter();
+            }
+          });
 
+          if (target === prizeJourneys) {
+            prizeScreen
+              .querySelector(`.prizes__item--journeys`)
+              .classList.add(`active`);
+          }
         }, timeDelay);
       });
     }
     return;
   }
-
 
   if (prizeScreen.classList.contains(`active`)) {
     addImagesSvg();
