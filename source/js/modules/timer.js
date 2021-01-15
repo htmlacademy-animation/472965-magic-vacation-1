@@ -1,69 +1,64 @@
-const gameCounter = document.querySelector(`#game .game__counter`);
-const minutesGameCounter = gameCounter.querySelector(`span:first-child`);
-const secondsGameCounter = gameCounter.querySelector(`span:last-child`);
+export default class Timer {
+  constructor(elementSelector, minute, fps) {
+    this.elements = [...document.querySelectorAll(`${elementSelector} span`)];
 
-const timer = 5;
-const fpsInterval = 1000;
+    this.animationframeID = null;
+    this.totalTime = null;
 
-let timeTotal;
-let then;
-let animationframeID;
+    this.then = Date.now();
+    this.minute = minute * 60 * 1000;
+    this.fpsInterval = 1000 / fps;
 
-
-function convertMS(milliseconds) {
-  let seconds = (Math.floor(milliseconds / 1000)) % 60;
-  let minute = (Math.floor(milliseconds / 60000)) % 60;
-
-  return {
-    minute,
-    seconds
-  };
-}
-
-
-function formattingTime(item) {
-  return item < 10 ? `0${item}` : item;
-}
-
-
-function drawTime() {
-  let timeLeft = timeTotal - Date.now();
-  let {minute, seconds} = convertMS(timeLeft);
-
-  minutesGameCounter.textContent = formattingTime(minute);
-  secondsGameCounter.textContent = formattingTime(seconds);
-
-  if (minute === 0 && seconds === 0) {
-    cancelTimer();
-    return;
+    this.startTimer = this.startTimer.bind(this);
   }
-}
 
+  convertMS(milliseconds) {
+    let seconds = (Math.floor(milliseconds / 1000)) % 60;
+    let minute = (Math.floor(milliseconds / 60000)) % 60;
 
-function startTimer() {
-
-  animationframeID = requestAnimationFrame(startTimer);
-
-  let now = Date.now();
-  let elapsed = now - then;
-
-  if (elapsed > fpsInterval) {
-    then = now - (elapsed % fpsInterval);
-
-    drawTime();
+    return {
+      minute,
+      seconds
+    };
   }
-}
 
-export function runTimer() {
-  then = Date.now();
-  timeTotal = then + (timer * 60 * 1000);
+  formattingTime(item) {
+    return item < 10 ? `0${item}` : item;
+  }
 
-  animationframeID = requestAnimationFrame(startTimer);
-}
+  drawTime() {
+    let timeLeft = this.totalTime - Date.now();
 
-export function cancelTimer() {
-  cancelAnimationFrame(animationframeID);
+    if (timeLeft <= 0) {
+      this.elements[0].textContent = `00`;
+      this.elements[1].textContent = `00`;
 
-  minutesGameCounter.textContent = `00`;
-  secondsGameCounter.textContent = `00`;
+      this.cancelTimer();
+      return;
+    }
+    let {minute, seconds} = this.convertMS(timeLeft);
+    this.elements[0].textContent = this.formattingTime(minute);
+    this.elements[1].textContent = this.formattingTime(seconds);
+  }
+
+  startTimer() {
+    this.animationframeID = requestAnimationFrame(this.startTimer);
+
+    let now = Date.now();
+    let elapsed = now - this.then;
+
+    if (elapsed > this.fpsInterval) {
+      this.then = now - (elapsed % this.fpsInterval);
+      this.drawTime();
+    }
+  }
+
+  runTimer() {
+    this.totalTime = Date.now() + this.minute;
+    this.animationframeID = requestAnimationFrame(this.startTimer);
+  }
+
+  cancelTimer() {
+    cancelAnimationFrame(this.animationframeID);
+  }
 }

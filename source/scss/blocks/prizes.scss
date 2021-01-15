@@ -93,7 +93,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-top: -1rem;
+  margin-top: -2rem;
   flex-grow: 1;
   margin-bottom: 6rem;
 
@@ -199,6 +199,10 @@
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }
+    .prizes__desc b {
+      // 3 единицы шрифта
+      width: 3ch;
+    }
 
     .prizes__icon {
       width: 26rem;
@@ -244,8 +248,11 @@
   opacity: 0;
 
   &.active {
-    transition: opacity 0.1s ease 2s;
-    opacity: 1;
+    animation: opacitySet 0.1s ease 2s forwards;
+
+    span {
+      animation: showTextToLeft 0.8s ease 2s forwards;
+    }
   }
 
   @media (min-width: $stop-scaling) {
